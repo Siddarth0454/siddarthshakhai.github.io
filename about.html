@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About Me — Siddarth Shakhai</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0c0f1a;
+  --bg2: #111527;
+  --card: #161b2e;
+  --border: #252d4a;
+  --accent: #e8b86d;
+  --accent2: #6d9ee8;
+  --accent3: #6de8b8;
+  --text: #eef0f8;
+  --muted: #7a82a8;
+  --glow: rgba(232,184,109,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:400;overflow-x:hidden;line-height:1.7;}
+
+/* GRAIN */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:0.5;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 3.5rem;background:rgba(12,15,26,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.nav-brand{font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;color:var(--accent);text-decoration:none;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;padding:0.5rem 1.2rem;border-radius:6px;transition:all 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:rgba(232,184,109,0.08);}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 3.5rem 4rem;gap:4rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(232,184,109,0.07) 0%,transparent 65%);pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(109,158,232,0.06) 0%,transparent 65%);pointer-events:none;}
+
+.hero-left{position:relative;z-index:1;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.7s 0.1s ease forwards;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--accent);}
+
+h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(3rem,5vw,4.5rem);line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem;opacity:0;animation:fadeUp 0.7s 0.2s ease forwards;}
+h1 em{font-style:italic;color:var(--accent);}
+
+.hero-desc{font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:2rem;font-weight:300;opacity:0;animation:fadeUp 0.7s 0.3s ease forwards;}
+
+.trait-chips{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.7s 0.4s ease forwards;}
+.chip{background:var(--card);border:1px solid var(--border);color:var(--muted);font-size:0.78rem;padding:0.4rem 1rem;border-radius:100px;transition:all 0.2s;}
+.chip.gold{border-color:rgba(232,184,109,0.4);color:var(--accent);background:rgba(232,184,109,0.07);}
+.chip.blue{border-color:rgba(109,158,232,0.4);color:var(--accent2);background:rgba(109,158,232,0.07);}
+
+.page-links{display:flex;gap:0.75rem;opacity:0;animation:fadeUp 0.7s 0.5s ease forwards;}
+.btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.8rem 1.8rem;border-radius:8px;font-size:0.88rem;font-weight:500;text-decoration:none;transition:all 0.2s;font-family:'Outfit',sans-serif;}
+.btn-gold{background:var(--accent);color:#0c0f1a;}
+.btn-gold:hover{background:#f0c97a;transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,184,109,0.3);}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+
+/* HERO RIGHT - personality card */
+.hero-right{position:relative;z-index:1;opacity:0;animation:fadeUp 0.7s 0.4s ease forwards;}
+.personality-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:2rem;position:relative;overflow:hidden;}
+.personality-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--accent),var(--accent2));}
+.pc-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:0.25rem;}
+.pc-sub{color:var(--muted);font-size:0.8rem;margin-bottom:1.75rem;}
+.trait-row{margin-bottom:1.1rem;}
+.trait-label{display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:0.35rem;}
+.trait-name{color:var(--text);font-weight:500;}
+.trait-val{color:var(--accent);font-weight:600;}
+.trait-bar{height:5px;background:var(--border);border-radius:100px;overflow:hidden;}
+.trait-fill{height:100%;border-radius:100px;background:linear-gradient(to right,var(--accent),var(--accent2));transition:width 1.5s cubic-bezier(0.4,0,0.2,1);}
+.pc-note{margin-top:1.5rem;padding:1rem;background:rgba(232,184,109,0.06);border:1px solid rgba(232,184,109,0.15);border-radius:10px;font-size:0.8rem;color:var(--muted);line-height:1.6;}
+
+/* SECTIONS */
+section{padding:6rem 3.5rem;max-width:1100px;margin:0 auto;}
+.sec-label{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem;}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:700;margin-bottom:0.75rem;line-height:1.2;}
+.sec-desc{color:var(--muted);font-size:0.95rem;margin-bottom:3rem;max-width:560px;}
+
+/* ABOUT BLOCKS */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:2rem;}
+.story-block{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:all 0.25s;}
+.story-block:hover{border-color:rgba(232,184,109,0.35);transform:translateY(-3px);}
+.story-block.full{grid-column:1/-1;}
+.story-block h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
+.story-block h3 .icon{font-size:1.2rem;}
+.story-block p{color:var(--muted);font-size:0.9rem;line-height:1.8;}
+.story-block p strong{color:var(--text);}
+
+/* FAST FACTS */
+.facts-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.fact{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;text-align:center;transition:all 0.2s;}
+.fact:hover{border-color:rgba(109,158,232,0.4);transform:translateY(-3px);}
+.fact-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--accent);line-height:1;}
+.fact-label{color:var(--muted);font-size:0.78rem;margin-top:0.4rem;line-height:1.4;}
+
+/* VISION BOX */
+.vision-box{background:linear-gradient(135deg,rgba(232,184,109,0.06),rgba(109,158,232,0.06));border:1px solid rgba(232,184,109,0.2);border-radius:20px;padding:2.5rem 3rem;margin-top:2rem;position:relative;overflow:hidden;}
+.vision-box::before{content:'"';position:absolute;top:-1.5rem;left:2rem;font-family:'Playfair Display',serif;font-size:9rem;color:rgba(232,184,109,0.07);line-height:1;pointer-events:none;}
+.vision-box p{font-size:1.05rem;color:var(--muted);line-height:1.9;position:relative;z-index:1;}
+.vision-box p strong{color:var(--text);}
+
+/* DIVIDER */
+hr{border:none;border-top:1px solid var(--border);max-width:1100px;margin:0 auto;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem 3.5rem;display:flex;justify-content:space-between;color:var(--muted);font-size:0.8rem;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;padding:7rem 1.5rem 3rem;gap:2rem;}
+  section{padding:4rem 1.5rem;}
+  .story-grid,.facts-row{grid-template-columns:1fr;}
+  .story-block.full{grid-column:1;}
+  footer{flex-direction:column;gap:0.5rem;padding:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="about.html" class="nav-brand">Siddarth Shakhai</a>
+  <ul class="nav-links">
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="qualifications.html">Qualifications</a></li>
+    <li><a href="achievements.html">Achievements</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">About Me</div>
+    <h1>Siddarth<br/><em>Shakhai</em></h1>
+    <p class="hero-desc">Class 12 ISC student at Johnson Grammar School, former Head Boy of Suprabhat Model High School, aspiring engineer, and independent thinker from Hyderabad, India — applying to the Singapore Institute of Technology.</p>
+    <div class="trait-chips">
+      <span class="chip gold">👑 Former Head Boy · SMHS</span>
+      <span class="chip blue">🔭 Cosmology Enthusiast</span>
+      <span class="chip">📍 Hyderabad, India</span>
+      <span class="chip gold">⚙️ Engineering Aspirant</span>
+      <span class="chip blue">🌏 Applying to SIT</span>
+    </div>
+    <div class="page-links">
+      <a href="qualifications.html" class="btn btn-gold">My Qualifications →</a>
+      <a href="achievements.html" class="btn btn-ghost">Achievements</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="personality-card">
+      <div class="pc-title">Personality Profile</div>
+      <div class="pc-sub">Big Five Trait Assessment</div>
+      <div class="trait-row">
+        <div class="trait-label"><span class="trait-name">Agreeableness</span><span class="trait-val">95</span></div>
+        <div class="trait-bar"><div class="trait-fill" style="width:0%" data-w="95%"></div></div>
+      </div>
+      <div class="trait-row">
+        <div class="trait-label"><span class="trait-name">Conscientiousness</span><span class="trait-val">90</span></div>
+        <div class="trait-bar"><div class="trait-fill" style="width:0%" data-w="90%"></div></div>
+      </div>
+      <div class="trait-row">
+        <div class="trait-label"><span class="trait-name">Openness</span><span class="trait-val">80</span></div>
+        <div class="trait-bar"><div class="trait-fill" style="width:0%" data-w="80%"></div></div>
+      </div>
+      <div class="trait-row">
+        <div class="trait-label"><span class="trait-name">Extraversion</span><span class="trait-val">80</span></div>
+        <div class="trait-bar"><div class="trait-fill" style="width:0%" data-w="80%"></div></div>
+      </div>
+      <div class="trait-row">
+        <div class="trait-label"><span class="trait-name">Neuroticism</span><span class="trait-val">75</span></div>
+        <div class="trait-bar"><div class="trait-fill" style="width:0%" data-w="75%"></div></div>
+      </div>
+      <div class="pc-note">High agreeableness and conscientiousness reflect a collaborative, disciplined leader who takes responsibility seriously — exactly what drove my Head Boy role.</div>
+    </div>
+  </div>
+</div>
+
+<hr/>
+
+<section>
+  <p class="sec-label reveal">My Story</p>
+  <h2 class="sec-title reveal">Who I Am</h2>
+  <p class="sec-desc reveal">A driven, curious student shaped by leadership, setbacks, and an unrelenting passion for understanding the world.</p>
+
+  <div class="story-grid">
+    <div class="story-block reveal">
+      <h3><span class="icon">👑</span> The Leader</h3>
+      <p>I served as <strong>Head Boy</strong> at Suprabhat Model High School (CBSE) — the highest student leadership position in the school, held while I was in Classes 9 and 10. I represented the student body, bridged communication between students and administration, managed school-wide discipline, and led the coordination of major events and assemblies. It was the most demanding and rewarding thing I had done up to that point.</p>
+    </div>
+    <div class="story-block reveal">
+      <h3><span class="icon">🔭</span> The Thinker</h3>
+      <p>Outside of school, I independently explore ideas that genuinely fascinate me. I've developed my own conceptual model around <strong>universe compression and rebirth</strong> — a Big Bounce-type cosmological theory — not for any assignment, just because the question of what happens at the end of the universe keeps me up at night.</p>
+    </div>
+    <div class="story-block reveal">
+      <h3><span class="icon">💻</span> The Tech Guy</h3>
+      <p>I'm deeply interested in technology — from how devices work at a hardware level to cloud systems and software troubleshooting. I've built a practical, self-taught skill set in <strong>device diagnostics, cloud management, and technical problem solving</strong> entirely through curiosity and hands-on experimentation.</p>
+    </div>
+    <div class="story-block reveal">
+      <h3><span class="icon">🏆</span> The Competitor</h3>
+      <p>I've competed across academics, science, and sports — winning <strong>1st place</strong> at a national-level English proficiency test and a university-level science quiz, and representing my school in football, basketball, and athletics. Competition sharpens me; I perform better under pressure.</p>
+    </div>
+    <div class="story-block full reveal">
+      <h3><span class="icon">🔄</span> The Recovery</h3>
+      <p>Moving from CBSE at Suprabhat Model High School to ISC at Johnson Grammar School in Class 11 was a bigger jump than I anticipated. A harder curriculum, a new environment, and if I'm honest — some genuine attention and focus struggles that made it difficult to stay consistently on top of things. My grades dipped. I'm not hiding that. What matters is I recognised it, understood what was happening, and started working around it more deliberately. <strong>I'm actively improving in Mathematics and Physics</strong>, and my board results will reflect that. That kind of honest self-awareness is exactly the mindset I'll bring to engineering at SIT.</p>
+    </div>
+  </div>
+</section>
+
+<hr/>
+
+<section>
+  <p class="sec-label reveal">At a Glance</p>
+  <h2 class="sec-title reveal">Fast Facts</h2>
+  <div class="facts-row">
+    <div class="fact reveal">
+      <div class="fact-num">5+</div>
+      <div class="fact-label">Competitive exams being prepared simultaneously</div>
+    </div>
+    <div class="fact reveal">
+      <div class="fact-num">1st</div>
+      <div class="fact-label">Rank at National Level NELTAS ECAT Grand Finale</div>
+    </div>
+    <div class="fact reveal">
+      <div class="fact-num">91%</div>
+      <div class="fact-label">Attendance rate in Class 11 — 168 of 184 days</div>
+    </div>
+    <div class="fact reveal">
+      <div class="fact-num">10+</div>
+      <div class="fact-label">Certificates across academics, sports & leadership</div>
+    </div>
+  </div>
+</section>
+
+<hr/>
+
+<section>
+  <p class="sec-label reveal">Hands-On Science</p>
+  <h2 class="sec-title reveal">The Laser Microscope Experiment</h2>
+  <p class="sec-desc reveal">A Class 11 experiment that turned basic lab equipment into a working projector — and showed me what engineering actually feels like.</p>
+
+  <div class="story-grid">
+    <div class="story-block full reveal" style="background:linear-gradient(135deg,rgba(109,158,232,0.07),rgba(109,232,184,0.05));border-color:rgba(109,158,232,0.25);">
+      <h3><span class="icon">🔬</span> Dirty Water Under Laser Light — A DIY Microscope Projector</h3>
+      <p>In Class 11 at Johnson Grammar School, our group designed and built a <strong>laser-based water droplet projector</strong> that could magnify microscopic impurities — including bacteria — onto a wall in real time, using nothing but a syringe, two glasses, a holder, and a laser pointer.</p>
+    </div>
+
+    <div class="story-block reveal">
+      <h3><span class="icon">⚗️</span> The Setup</h3>
+      <p>Two glass tumblers were placed side by side on a table, facing a clean white wall. A syringe filled with <strong>dirty water</strong> was held inverted between them using a stand/holder. The flow was carefully adjusted until a <strong>single droplet hung suspended</strong> at the syringe tip — not falling, just hanging.</p>
+    </div>
+
+    <div class="story-block reveal">
+      <h3><span class="icon">🔦</span> The Physics</h3>
+      <p>A laser pointer was aimed directly through the suspended water droplet toward the wall. The droplet — being a near-perfect <strong>spherical water lens</strong> — refracted and magnified the laser light. Every particle, impurity, and microorganism inside the dirty water cast a <strong>magnified shadow projection</strong> on the wall, visible to the naked eye.</p>
+    </div>
+
+    <div class="story-block reveal">
+      <h3><span class="icon">🧫</span> What We Saw</h3>
+      <p>The wall projection clearly showed <strong>particles, impurities, and microbial matter</strong> from the dirty water — magnified significantly — without any lens, microscope, or powered equipment. Just a droplet acting as a natural convex lens and a laser as the light source. Simple. Elegant. Effective.</p>
+    </div>
+
+    <div class="story-block reveal">
+      <h3><span class="icon">💡</span> Why It Matters</h3>
+      <p>This experiment demonstrated core principles of <strong>optics, refraction, and light scattering</strong> in a completely self-designed setup. It wasn't from a textbook instruction — it was conceived, built, and tested by us. That process of designing a working system from first principles is exactly the kind of thinking I want to develop further as an engineer at SIT.</p>
+    </div>
+  </div>
+</section>
+
+<hr/>
+
+<section>
+  <p class="sec-label reveal">Why SIT</p>
+  <h2 class="sec-title reveal">My Vision</h2>
+  <div class="vision-box reveal">
+    <p>I want to be in an environment that pushes me to <strong>build, create, and solve real problems</strong> — not just study them. Singapore Institute of Technology represents exactly that: an applied, industry-connected, internationally rigorous institution where engineering isn't theoretical, it's lived.<br/><br/>
+    I bring analytical depth, leadership experience, resilience from real setbacks, and a genuinely curious mind. I'm not the student who coasted through school. I'm the one who took on the hardest role, stumbled, reflected, and came back sharper. <strong>That's the engineer I'll be.</strong></p>
+  </div>
+</section>
+
+<footer>
+  <span>Siddarth Shakhai · Portfolio</span>
+  <span>SIT Bachelor's Application 2025–26</span>
+</footer>
+
+<script>
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),i*80);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+reveals.forEach(el=>obs.observe(el));
+
+// Animate trait bars
+const bars = document.querySelectorAll('.trait-fill');
+setTimeout(()=>{
+  bars.forEach(b=>{ b.style.width = b.dataset.w; });
+},600);
+</script>
+</body>
+</html>
